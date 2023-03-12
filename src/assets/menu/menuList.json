@@ -1,0 +1,25 @@
+{
+    "menu": [
+      {
+        "name": "Home",
+        "url": "/",
+        "roles": ["admin", "customer", "agent"]
+      },
+      {
+        "name": "Dashboard",
+        "url": "/dashboard",
+        "roles": ["admin", "customer"]
+      },
+      {
+        "name": "Admin",
+        "url": "/admin",
+        "roles": ["admin"]
+      },
+      {
+        "name": "Profile",
+        "url": "/profile",
+        "roles": ["agent"]
+      }
+    ]
+  }
+  
