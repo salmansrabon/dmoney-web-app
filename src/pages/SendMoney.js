@@ -6,6 +6,7 @@ import adminLayout from "../hoc/adminLayout"
 const SendMoney = () => {
     const [to_account, settoAccount] = useState(null);
     const [amount, setAmount] = useState(null);
+    const [balance, setBalance] = useState(0);
 
     const userString = localStorage.getItem('user');
     const user = JSON.parse(userString);
@@ -20,37 +21,55 @@ const SendMoney = () => {
             amount: Number(amount)
         };
 
-        try {
-            const response = await axios.post('/transaction/sendmoney', data, {
-                headers: {
-                    'Authorization': `${localStorage.getItem('token')}`,
-                    'X-Auth-Secret-Key': 'ROADTOSDET'
+        Swal.fire({
+            text: 'Are you sure to do transaction?',
+            icon: 'warning',
+            html:
+                'Amount: ' + amount + '<br>' +
+                'Current Balance: ' + balance,
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ok'
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await axios.post('/transaction/sendmoney', data, {
+                        headers: {
+                            'Authorization': `${localStorage.getItem('token')}`,
+                            'X-Auth-Secret-Key': 'ROADTOSDET'
+                        }
+                    });
+                    console.log(response.data);
+                    var r = response.data;
+                    if (r?.currentBalance) {
+                        setBalance(r.currentBalance);
+                        Swal.fire({
+                            title: r?.message || 'Operation successful',
+                            icon: 'success',
+                            html:
+                                'Current balance: ' + r?.currentBalance + ' TK' + '<br>' +
+                                'Fee: ' + r?.fee + ' TK' + '<br>' +
+                                'Trnx ID: ' + r?.trnxId,
+                        });
+                    } else {
+                        Swal.fire(
+                            'Warning!',
+                            r?.message,
+                            'warning'
+                        );
+                    }
+
+                } catch (error) {
+                    console.log(error);
+                    Swal.fire(
+                        'Error',
+                        error.response.data.message || 'Something went wrong',
+                        'error'
+                    );
                 }
-            });
-            console.log(response.data);
-            var r = response.data;
-            if(r.currentBalance){
-                Swal.fire(
-                    r?.message,
-                    'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
-                    'success'
-                );
-            }else{
-                Swal.fire(
-                    'Warning!',
-                    r?.message,
-                    'warning'
-                );
             }
-            
-        } catch (error) {
-            console.log(error);
-            Swal.fire(
-                'Error',
-                error.response.data.message || 'Something went wrong',
-                'error'
-            );
-        }
+        });
     };
 
     return <>

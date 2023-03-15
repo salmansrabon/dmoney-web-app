@@ -19,37 +19,48 @@ const Deposit = () => {
             amount: Number(amount)
         };
 
-        try {
-            const response = await axios.post(`/transaction/deposit`, data, {
-                headers: {
-                    'Authorization': `${localStorage.getItem('token')}`,
-                    'X-Auth-Secret-Key': 'ROADTOSDET'
+        Swal.fire({
+            title: 'Are you sure to do deposit?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Deposit!'
+          }).then(async (result) => {
+            if (result.isConfirmed) {
+                try {
+                    const response = await axios.post(`/transaction/deposit`, data, {
+                        headers: {
+                            'Authorization': `${localStorage.getItem('token')}`,
+                            'X-Auth-Secret-Key': 'ROADTOSDET'
+                        }
+                    });
+                    console.log(response.data);
+                    var r = response.data;
+                    if (r?.currentBalance) {
+                        Swal.fire(
+                            r?.message,
+                            'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
+                            'success'
+                        );
+                    }else{
+                        Swal.fire(
+                            'Warning!',
+                            r?.message,
+                            'warning'
+                        );
+                    }
+        
+                } catch (error) {
+                    console.log(error);
+                    Swal.fire(
+                        'Error',
+                        error.response.data.message || 'Something went wrong',
+                        'error'
+                    );
                 }
-            });
-            console.log(response.data);
-            var r = response.data;
-            if (r?.currentBalance) {
-                Swal.fire(
-                    r?.message,
-                    'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
-                    'success'
-                );
-            }else{
-                Swal.fire(
-                    'Warning!',
-                    r?.message,
-                    'warning'
-                );
             }
-
-        } catch (error) {
-            console.log(error);
-            Swal.fire(
-                'Error',
-                error.response.data.message || 'Something went wrong',
-                'error'
-            );
-        }
+          })
     };
 
     return <>
