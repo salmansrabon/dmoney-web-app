@@ -27,11 +27,21 @@ const Deposit = () => {
                 }
             });
             console.log(response.data);
-            Swal.fire(
-                'Successfuly Deposit!',
-                'You clicked the button!',
-                'success'
-            );
+            var r = response.data;
+            if (r?.currentBalance) {
+                Swal.fire(
+                    r?.message,
+                    'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
+                    'success'
+                );
+            }else{
+                Swal.fire(
+                    'Warning!',
+                    r?.message,
+                    'warning'
+                );
+            }
+
         } catch (error) {
             console.log(error);
             Swal.fire(

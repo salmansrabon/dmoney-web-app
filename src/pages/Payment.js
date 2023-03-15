@@ -29,11 +29,20 @@ const Payment = () => {
             });
             console.log(response.data);
             var r = response.data;
-            Swal.fire(
-                r?.message,
-                'You current balance is ' + r?.currentBalance + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
-                'success'
-            );
+            if(r.currentBalance){
+                Swal.fire(
+                    r?.message,
+                    'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
+                    'success'
+                );
+            }else{
+                Swal.fire(
+                    'Warning!',
+                    r?.message,
+                    'warning'
+                );
+            }
+           
         } catch (error) {
             console.log(error);
             Swal.fire(
@@ -51,7 +60,7 @@ const Payment = () => {
                     <h5>Payment</h5><hr />
                     <div className="row mt-4">
                         <div className="col-1">
-                            <label className="form-label">To Account</label>
+                            <label className="form-label">To Merchant</label>
                         </div>
                         <div className="col-3">
                             <div className="form-outline mb-3">

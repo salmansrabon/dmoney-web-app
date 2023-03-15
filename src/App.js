@@ -15,6 +15,7 @@ const CreateUser = lazy(() => import('./pages/CreateUser'));
 const CustomerStatement = lazy(() => import('./pages/CustomerStatement'));
 const UserLimit = lazy(() => import('./pages/UserLimit'));
 const SystemBalance = lazy(() => import('./pages/SystemBalance'));
+const Profile = lazy(() => import('./pages/profile/Profile'));
 
 function App() {
     const userRole = localStorage.getItem('role');
@@ -28,16 +29,17 @@ function App() {
                     <Route exact path='/deposit' element={userRole === 'Agent' ? <Deposit /> : <LoginPage />} />
                     <Route exact path='/profile/:id' element={userRole === 'Admin' ? <ProfilePage /> : <LoginPage />} />
                     <Route exact path='/user-list' element={userRole === 'Admin' ? <UserList /> : <LoginPage /> } />
-                    <Route exact path='/transaction' element={userRole === 'Customer' || userRole === 'Agent' ? <Transaction /> : <LoginPage />} />
+                    <Route exact path='/transaction' element={userRole === 'Admin' ? <Transaction /> : <LoginPage />} />
                     <Route exact path='/send-money' element={userRole === 'Customer' ? <SendMoney /> : <LoginPage />} />
                     <Route exact path='/payment' element={userRole === 'Customer' || userRole === 'Agent' ? <Payment /> : <LoginPage />} />
-                    <Route exact path='/withdraw' element={userRole === 'Customer' ? <Withdraw /> : <LoginPage />} />
+                    <Route exact path='/withdraw' element={userRole === 'Customer' || userRole === 'Merchant' ? <Withdraw /> : <LoginPage />} />
                     {/* <Route exact path='/check-balance' element={userRole === 'Customer' || userRole === 'Agent' ? <CheckBalance /> : <LoginPage />} /> */}
                     <Route exact path='/create-user' element={userRole === 'Admin' ? <CreateUser /> : <LoginPage />} />
                     <Route exact path='/deposit' element={userRole === 'Customer' || userRole === 'Agent' ? <Deposit /> : <LoginPage />} />
                     <Route exact path='/user-list' element={userRole === 'Admin' ? <UserList /> : <LoginPage />} />
-                    <Route exact path='/statement' element={userRole === 'Customer' || userRole === 'Agent' ? <CustomerStatement /> : <LoginPage />} />
+                    <Route exact path='/statement' element={userRole === 'Customer' || userRole === 'Agent' || userRole === 'Merchant' ? <CustomerStatement /> : <LoginPage />} />
                     <Route exact path='/user-limit' element={userRole === 'Customer' ? <UserLimit /> : <LoginPage />} />
+                    <Route exact path='/my-profile' element={userRole === 'Customer' || userRole === 'Admin' || userRole === 'Agent' || userRole === 'Merchant' ? <Profile /> : <LoginPage />} />
                     {/* <Route exact path='/system-balance' element={userRole === 'Admin' ? <SystemBalance /> : <LoginPage />} /> */}
                 </Routes>
             </Suspense>

@@ -33,7 +33,7 @@ const UserLimit = () => {
         <div className="row">
           <div className="col-5">
             <button type="button" className="btn btn-primary" onClick={handleLimit}>Check Limit</button>&nbsp;&nbsp;
-            <span style={{ fontSize: "19px", fontWeight: "bold" }}>{limit && <>Limit: {limit}</>}</span>
+            <span style={{ fontSize: "19px", fontWeight: "bold" }}>{limit && <>Limit: {limit} TK</>}</span>
           </div>
           <div className="col">
 

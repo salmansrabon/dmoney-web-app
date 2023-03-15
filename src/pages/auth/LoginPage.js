@@ -25,7 +25,7 @@ const LoginPage = () => {
             localStorage.setItem('token', response.data.token);
             console.log(response.data.role);
             localStorage.setItem('role', response.data.role);
-            await axios.get(`/user/search/email/${email}`, {
+            await axios.get(`/user/list`, {
                 headers: {
                     'Authorization': response?.data?.token,
                     'X-Auth-Secret-Key': 'ROADTOSDET'
@@ -33,7 +33,12 @@ const LoginPage = () => {
             })
                 .then((response) => {
                     console.log(response.data);
-                    localStorage.setItem('user', JSON.stringify(response?.data?.user));
+                    const user = response.data?.users?.find((user) => user.email === email);
+                    if (user) {
+                        localStorage.setItem('user', JSON.stringify(user));
+                    } else {
+                        localStorage.setItem('user', null);
+                    }
                 })
                 .catch((error) => {
                     console.log(error);
@@ -43,10 +48,13 @@ const LoginPage = () => {
                 window.location.href = '/user-list';
             }
             else if (response.data.role === 'Agent') {
-                window.location.href = '/transaction';
+                window.location.href = '/statement';
             }
             else if (response.data.role === 'Customer') {
-                window.location.href = '/transaction';
+                window.location.href = '/statement';
+            }
+            else if (response.data.role === 'Merchant') {
+                window.location.href = '/statement';
             }
             else {
                 localStorage.clear();

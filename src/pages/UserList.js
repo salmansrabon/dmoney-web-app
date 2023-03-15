@@ -157,7 +157,7 @@ const UserList = () => {
           </div>
           <div className="col">
             <div>
-              <h2>Balance: {balance}</h2>
+              <h2>Balance: {balance} TK</h2>
             </div>
           </div>
           <div className='col'>

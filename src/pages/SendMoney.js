@@ -29,11 +29,20 @@ const SendMoney = () => {
             });
             console.log(response.data);
             var r = response.data;
-            Swal.fire(
-                r?.message,
-                'You current balance is ' + r?.currentBalance + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
-                'success'
-            );
+            if(r.currentBalance){
+                Swal.fire(
+                    r?.message,
+                    'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
+                    'success'
+                );
+            }else{
+                Swal.fire(
+                    'Warning!',
+                    r?.message,
+                    'warning'
+                );
+            }
+            
         } catch (error) {
             console.log(error);
             Swal.fire(

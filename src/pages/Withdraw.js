@@ -27,12 +27,22 @@ const Withdraw = () => {
                     'X-Auth-Secret-Key': 'ROADTOSDET'
                 }
             });
-            console.log(response.data);
-            Swal.fire(
-                'Successfuly Withdraw!',
-                'You clicked the button!',
-                'success'
-            );
+            //console.log(response.data);
+            var r = response.data;
+            if(r.currentBalance){
+                Swal.fire(
+                    r?.message,
+                    'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
+                    'success'
+                );
+            }else{
+                Swal.fire(
+                    'Warning!',
+                    r?.message,
+                    'warning'
+                );
+            }
+            
         } catch (error) {
             console.log(error);
             Swal.fire(
@@ -50,7 +60,7 @@ const Withdraw = () => {
                     <h5>Withdraw</h5><hr />
                     <div className="row mt-4">
                         <div className="col-1">
-                            <label className="form-label">To Customer</label>
+                            <label className="form-label">To Agent</label>
                         </div>
                         <div className="col-3">
                             <div className="form-outline mb-3">

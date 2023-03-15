@@ -28,6 +28,11 @@ const Sidebar = () => {
                              Create User
                         </Link>
                     </li>
+                    <li className="mb-1">
+                        <Link tag="a" className="" to="/transaction">
+                            Transaction
+                        </Link>
+                    </li>
                 </ul>
             </PerfectScrollbar>
         </div>
@@ -44,8 +49,8 @@ const Sidebar = () => {
             <PerfectScrollbar className="sidebar-items">
                 <ul className="list-unstyled ps-0">
                 <li className="mb-1">
-                        <Link tag="a" className="" to="/transaction">
-                            Transaction
+                        <Link tag="a" className="" to="/statement">
+                             Statement
                         </Link>
                     </li>
                     <li className="mb-1">
@@ -58,11 +63,7 @@ const Sidebar = () => {
                             Deposit
                         </Link>
                     </li>
-                    <li className="mb-1">
-                        <Link tag="a" className="" to="/statement">
-                             Statement
-                        </Link>
-                    </li>
+                    
                 </ul>
             </PerfectScrollbar>
         </div>
@@ -79,8 +80,8 @@ const Sidebar = () => {
             <PerfectScrollbar className="sidebar-items">
                 <ul className="list-unstyled ps-0">
                 <li className="mb-1">
-                        <Link tag="a" className="" to="/transaction">
-                            Transaction
+                        <Link tag="a" className="" to="/statement">
+                             Statement
                         </Link>
                     </li>
                     <li className="mb-1">
@@ -98,14 +99,36 @@ const Sidebar = () => {
                             Payment
                         </Link>
                     </li>
+                    
                     <li className="mb-1">
+                        <Link tag="a" className="" to="/user-limit">
+                             Limit
+                        </Link>
+                    </li>
+                    
+                </ul>
+            </PerfectScrollbar>
+        </div>
+        }
+        else if(userRole === 'Merchant'){
+            // use the full return
+            return <div className="border-end sidenav" id="sidebar-wrapper">
+            <div className="sidebar-heading border-bottom ">
+                <Link to="/">
+                    {/* <img alt="Alt content" src={require('./../assets/images/logo.png')} /> */}
+                    <h5>Dmoney</h5>
+                </Link>
+            </div>
+            <PerfectScrollbar className="sidebar-items">
+                <ul className="list-unstyled ps-0">
+                <li className="mb-1">
                         <Link tag="a" className="" to="/statement">
                              Statement
                         </Link>
                     </li>
                     <li className="mb-1">
-                        <Link tag="a" className="" to="/user-limit">
-                             User Limit
+                        <Link tag="a" className="" to="/withdraw">
+                             Withdraw
                         </Link>
                     </li>
                     
