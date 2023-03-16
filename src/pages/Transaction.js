@@ -128,9 +128,9 @@ const Transaction = () => {
             <h5 className="pb-2 mb-0">Transaction List</h5>
           </div>
           <div className='col'>
-            <div>
+            {/* <div>
               <h2>Balance: {balance}</h2>
-            </div>
+            </div> */}
           </div>
           <div className='col'>
             <input type="text" className="form-control" placeholder="Search...Only Account" value={searchText} onChange={e => setSearchText(e.target.value)} />

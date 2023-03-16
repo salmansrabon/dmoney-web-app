@@ -43,15 +43,13 @@ const SendMoney = () => {
                     console.log(response.data);
                     var r = response.data;
                     if (r?.currentBalance) {
+                        const formattedBalance = r.currentBalance.toLocaleString('en-US');
                         setBalance(r.currentBalance);
-                        Swal.fire({
-                            title: r?.message || 'Operation successful',
-                            icon: 'success',
-                            html:
-                                'Current balance: ' + r?.currentBalance + ' TK' + '<br>' +
-                                'Fee: ' + r?.fee + ' TK' + '<br>' +
-                                'Trnx ID: ' + r?.trnxId,
-                        });
+                        Swal.fire(
+                            r.message,
+                         `Your current balance is ${formattedBalance} Trnx ID: ${r.trnxId}`,
+                          'success'
+                        );
                     } else {
                         Swal.fire(
                             'Warning!',
@@ -84,7 +82,8 @@ const SendMoney = () => {
                         <div className="col-3">
                             <div className="form-outline mb-3">
                                 <input type="text" className="form-control"
-                                    placeholder="Enter Your Account Number" value={to_account || ''} onChange={e => settoAccount(e.target.value)} />
+                                    placeholder="Enter Your Account Number" value={to_account || ''} 
+                                    onChange={e => settoAccount(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="row">
@@ -94,13 +93,12 @@ const SendMoney = () => {
                             <div className="col-3">
                                 <div className="form-outline mb-3">
                                     <input type="number" className="form-control"
-                                        placeholder="Enter Number of Amount" value={amount || ''} onChange={e => setAmount(e.target.value)} />
+                                        placeholder="Enter Number of Amount" value={amount || ''} 
+                                        onChange={e => setAmount(e.target.value)} required/>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-
                     <div className="mt-2">
                         <button type="submit" className="btn btn-primary">Send</button>
                     </div>

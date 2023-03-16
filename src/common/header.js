@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Header = () => {
     const userRole = localStorage.getItem('role');
+    const userEmail = localStorage.getItem('email');
     const handleLogout = () => {
         localStorage.clear();
         window.location.href = '/login';
@@ -15,7 +16,7 @@ const Header = () => {
                 aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
-                        {/* <li className="nav-item"><a data-bs-toggle="modal" data-bs-target="#add-lead-modal"  className="nav-link highlighted-text" href="#!">Add lead</a></li> */}
+                        <li className="nav-item"><a data-bs-toggle="modal" data-bs-target="#add-lead-modal"  className="nav-link highlighted-text" href="#!">{userEmail}</a></li>
                         <li className="nav-item dropdown notifications">
                             <a className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false"><i className="fa fa-user-circle" aria-hidden="true" ></i></a>
@@ -39,7 +40,7 @@ const Header = () => {
                 aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
-                        {/* <li className="nav-item"><a data-bs-toggle="modal" data-bs-target="#add-lead-modal"  className="nav-link highlighted-text" href="#!">Add lead</a></li> */}
+                        <li className="nav-item"><a data-bs-toggle="modal" data-bs-target="#add-lead-modal"  className="nav-link highlighted-text" href="#!">{userEmail}</a></li>
                         <li className="nav-item dropdown notifications">
                             <a className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false"><i className="fa fa-user-circle" aria-hidden="true" ></i></a>
@@ -62,7 +63,7 @@ const Header = () => {
                 aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
-                        {/* <li className="nav-item"><a data-bs-toggle="modal" data-bs-target="#add-lead-modal"  className="nav-link highlighted-text" href="#!">Add lead</a></li> */}
+                        <li className="nav-item"><a data-bs-toggle="modal" data-bs-target="#add-lead-modal"  className="nav-link highlighted-text" href="#!">{userEmail}</a></li>
                         <li className="nav-item dropdown notifications">
                             <a className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false"><i className="fa fa-user-circle" aria-hidden="true" ></i></a>
@@ -85,7 +86,7 @@ const Header = () => {
                 aria-expanded="false" aria-label="Toggle navigation"><span className="navbar-toggler-icon"></span></button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ms-auto mt-2 mt-lg-0">
-                        {/* <li className="nav-item"><a data-bs-toggle="modal" data-bs-target="#add-lead-modal"  className="nav-link highlighted-text" href="#!">Add lead</a></li> */}
+                        <li className="nav-item"><a data-bs-toggle="modal" data-bs-target="#add-lead-modal"  className="nav-link highlighted-text" href="#!">{userEmail}</a></li>
                         <li className="nav-item dropdown notifications">
                             <a className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false"><i className="fa fa-user-circle" aria-hidden="true" ></i></a>

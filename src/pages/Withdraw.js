@@ -6,6 +6,7 @@ import adminLayout from "../hoc/adminLayout"
 const Withdraw = () => {
     const [toAccount, settoAccount] = useState(null);
     const [amount, setAmount] = useState(null);
+    const [balance, setBalance] = useState(0);
 
     const userString = localStorage.getItem('user');
     const user = JSON.parse(userString);
@@ -23,6 +24,9 @@ const Withdraw = () => {
         Swal.fire({
             title: 'Are you sure to do withdraw?',
             icon: 'warning',
+            html:
+            'Amount: ' + amount + '<br>' +
+            'Current Balance: ' + balance,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -39,10 +43,12 @@ const Withdraw = () => {
                     //console.log(response.data);
                     var r = response.data;
                     if(r.currentBalance){
+                        const formattedBalance = r.currentBalance.toLocaleString('en-US');
+                        setBalance(r.currentBalance);
                         Swal.fire(
-                            r?.message,
-                            'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
-                            'success'
+                            r.message,
+                         `Your current balance is ${formattedBalance} Trnx ID: ${r.trnxId}`,
+                          'success'
                         );
                     }else{
                         Swal.fire(
@@ -76,7 +82,8 @@ const Withdraw = () => {
                         <div className="col-3">
                             <div className="form-outline mb-3">
                                 <input type="text" className="form-control"
-                                    placeholder="Enter Your Account Number" value={toAccount || ''} onChange={e => settoAccount(e.target.value)} />
+                                    placeholder="Enter Your Account Number" value={toAccount || ''} 
+                                    onChange={e => settoAccount(e.target.value)} required/>
                             </div>
                         </div>
                     </div>
@@ -87,7 +94,8 @@ const Withdraw = () => {
                         <div className="col-3">
                             <div className="form-outline mb-3">
                                 <input type="number" className="form-control"
-                                    placeholder="Enter Number of Amount" value={amount || ''} onChange={e => setAmount(e.target.value)} />
+                                    placeholder="Enter Number of Amount" value={amount || ''} 
+                                    onChange={e => setAmount(e.target.value)} required/>
                             </div>
                         </div>
                     </div>

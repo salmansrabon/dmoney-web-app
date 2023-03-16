@@ -6,6 +6,7 @@ import Swal from 'sweetalert2'
 const Deposit = () => {
     const [toAccount, settoAccount] = useState('');
     const [amount, setAmount] = useState('');
+    const [balance, setBalance] = useState(0);
 
     const userString = localStorage.getItem('user');
     const user = JSON.parse(userString);
@@ -22,6 +23,9 @@ const Deposit = () => {
         Swal.fire({
             title: 'Are you sure to do deposit?',
             icon: 'warning',
+            html:
+            'Amount: ' + amount + '<br>' +
+            'Current Balance: ' + balance,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -38,10 +42,12 @@ const Deposit = () => {
                     console.log(response.data);
                     var r = response.data;
                     if (r?.currentBalance) {
+                        const formattedBalance = r.currentBalance.toLocaleString('en-US');
+                        setBalance(r.currentBalance);
                         Swal.fire(
-                            r?.message,
-                            'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
-                            'success'
+                            r.message,
+                         `Your current balance is ${formattedBalance} Trnx ID: ${r.trnxId}`,
+                          'success'
                         );
                     }else{
                         Swal.fire(
@@ -75,7 +81,8 @@ const Deposit = () => {
                         <div className="col-3">
                             <div className="form-outline mb-3">
                                 <input type="text" className="form-control"
-                                    placeholder="To Account" value={toAccount || ''} onChange={e => settoAccount(e.target.value)} />
+                                    placeholder="To Account" value={toAccount || ''} 
+                                    onChange={e => settoAccount(e.target.value)} required/>
                             </div>
                         </div>
                     </div>
@@ -86,7 +93,8 @@ const Deposit = () => {
                         <div className="col-3">
                             <div className="form-outline mb-3">
                                 <input type="number" className="form-control"
-                                    placeholder="Enter Number of Amount" value={amount || ''} onChange={e => setAmount(e.target.value)} />
+                                    placeholder="Enter Number of Amount" value={amount || ''} 
+                                    onChange={e => setAmount(e.target.value)} required/>
                             </div>
                         </div>
                     </div>
