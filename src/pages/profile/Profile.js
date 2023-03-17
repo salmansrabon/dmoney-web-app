@@ -53,8 +53,7 @@ const Profile = () => {
             console.log(response.data);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             Swal.fire(
-                'Successfuly Saved User!',
-                'You clicked the button!',
+                'Successfuly update the user!',
                 'success'
             );
         } catch (error) {
@@ -116,7 +115,7 @@ const Profile = () => {
                         <input type="text" className="form-control" value={role} readOnly></input>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-default">Submit</button>
+                <button type="submit" className="btn btn-default">Update</button>
             </form>
         </div>
     </>
