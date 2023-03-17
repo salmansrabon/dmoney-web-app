@@ -60,7 +60,7 @@ const CreateUser = () => {
                             <div className="form-outline mb-4">
                                 <label className="form-label" htmlFor="form3Example3">Name</label>
                                 <input type="text" id="form3Example3" className="form-control form-control-lg"
-                                    placeholder="Enter Your Full Name" value={name} onChange={e => setName(e.target.value)} />
+                                    placeholder="Enter Your Full Name" value={name} onChange={e => setName(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="col">
@@ -68,7 +68,7 @@ const CreateUser = () => {
                             <div className="form-outline mb-4">
                                 <label className="form-label" htmlFor="form3Example3">Email address</label>
                                 <input type="email" id="form3Example3" className="form-control form-control-lg"
-                                    placeholder="Enter a valid email address" value={email} onChange={e => setEmail(e.target.value)} />
+                                    placeholder="Enter a valid email address" value={email} onChange={e => setEmail(e.target.value)} required/>
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@ const CreateUser = () => {
                             <div className="form-outline mb-3">
                                 <label className="form-label" htmlFor="form3Example4">Password</label>
                                 <input type="password" id="form3Example4" className="form-control form-control-lg"
-                                    placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)} />
+                                    placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="col">
@@ -86,7 +86,7 @@ const CreateUser = () => {
                             <div className="form-outline mb-3">
                                 <label className="form-label" htmlFor="form3Example5">Phone</label>
                                 <input type="text" id="form3Example4" className="form-control form-control-lg"
-                                    placeholder="Enter Your Phone Number" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
+                                    placeholder="Enter Your Phone Number" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} required/>
                             </div>
                         </div>
                     </div>
@@ -96,13 +96,13 @@ const CreateUser = () => {
                             <div className="form-outline mb-3">
                                 <label className="form-label" htmlFor="form3Example6">NID</label>
                                 <input type="text" id="form3Example4" className="form-control form-control-lg"
-                                    placeholder="Enter Your NID" value={nid} onChange={e => setNid(e.target.value)} />
+                                    placeholder="Enter Your NID" value={nid} onChange={e => setNid(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="col">
                             <div className="form-outline mb-3">
                                 <label className="form-label" htmlFor="form3Example6">User Role</label>
-                                <select className="form-select form-select-lg" value={role} onChange={e => setRole(e.target.value)}>
+                                <select className="form-select form-select-lg" value={role} onChange={e => setRole(e.target.value)} required>
                                     <option value="">Select</option>
                                     <option value="Customer">Customer</option>
                                     <option value="Agent">Agent</option>

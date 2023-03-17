@@ -6,6 +6,7 @@ import axios from "axios";
 const Payment = () => {
     const [to_account, settoAccount] = useState(null);
     const [amount, setAmount] = useState(null);
+    const [balance, setBalance] = useState(0);
 
     const userString = localStorage.getItem('user');
     const user = JSON.parse(userString);
@@ -23,6 +24,9 @@ const Payment = () => {
         Swal.fire({
             title: 'Are you sure to do payment?',
             icon: 'warning',
+            html:
+            'Amount: ' + amount + '<br>' +
+            'Current Balance: ' + balance,
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -39,10 +43,12 @@ const Payment = () => {
                     console.log(response.data);
                     var r = response.data;
                     if(r.currentBalance){
+                        const formattedBalance = r.currentBalance.toLocaleString('en-US');
+                        setBalance(r.currentBalance);
                         Swal.fire(
-                            r?.message,
-                            'You current balance is ' + r?.currentBalance + 'TK', + ' Fee: ' + r?.fee + ' Trnx ID: ' + r?.trnxId,
-                            'success'
+                            r.message,
+                         `Your current balance is ${formattedBalance} Trnx ID: ${r.trnxId}`,
+                          'success'
                         );
                     }else{
                         Swal.fire(
@@ -76,7 +82,8 @@ const Payment = () => {
                         <div className="col-3">
                             <div className="form-outline mb-3">
                                 <input type="text" className="form-control"
-                                    placeholder="Enter Your Account Number" value={to_account || ''} onChange={e => settoAccount(e.target.value)} />
+                                    placeholder="Enter Your Account Number" value={to_account || ''} 
+                                    onChange={e => settoAccount(e.target.value)} required/>
                             </div>
                         </div>
                         <div className="row">
@@ -86,7 +93,8 @@ const Payment = () => {
                             <div className="col-3">
                                 <div className="form-outline mb-3">
                                     <input type="number" className="form-control"
-                                        placeholder="Enter Number of Amount" value={amount || ''} onChange={e => setAmount(e.target.value)} />
+                                        placeholder="Enter Number of Amount" value={amount || ''} 
+                                        onChange={e => setAmount(e.target.value)} required/>
                                 </div>
                             </div>
                         </div>

@@ -17,6 +17,8 @@ const UserList = () => {
   const [balance, setBalance] = useState(null);
   const [isChecked, setIsChecked] = useState(false);
 
+  const formattedNum = balance ? balance.toLocaleString("en-US") : "";
+
   function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     return new Date(dateString).toLocaleDateString('en-US', options);
@@ -157,7 +159,7 @@ const UserList = () => {
           </div>
           <div className="col">
             <div>
-              <h2>Balance: {balance} TK</h2>
+              <h2>Balance: {formattedNum} &nbsp;TK</h2>
             </div>
           </div>
           <div className='col'>
