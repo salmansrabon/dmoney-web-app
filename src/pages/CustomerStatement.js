@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const CustomerStatement = () => {
     const [transactions, setTransaction] = useState([]);
-    const [balance, setBalance] = useState(null);
+    const [balance, setBalance] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
