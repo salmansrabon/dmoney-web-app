@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import Swal from 'sweetalert2'
 import adminLayout from "../hoc/adminLayout"
@@ -12,6 +12,30 @@ const SendMoney = () => {
     const user = JSON.parse(userString);
     const from_account = user.phone_number;
 
+    useEffect(() => {
+        async function fetchData() {
+            const headers = {
+                'Authorization': localStorage.getItem('token'),
+                'X-Auth-Secret-Key': 'ROADTOSDET'
+            };
+
+            const config = {
+                headers: headers
+            };
+
+            await axios.get(`/transaction/balance/${from_account}`, config)
+                .then((response) => {
+                    console.log(response.data);
+                    setBalance(response?.data?.balance);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+
+        fetchData();
+    }, [localStorage.getItem('token')]);
+
     const handleSubmit = async event => {
         event.preventDefault();
 
@@ -20,17 +44,18 @@ const SendMoney = () => {
             to_account: to_account,
             amount: Number(amount)
         };
-
+        const formattedAmount = amount.toLocaleString('en-US');
+        const formattedBal = balance.toLocaleString('en-US');
         Swal.fire({
-            text: 'Are you sure to do transaction?',
             icon: 'warning',
+            title: 'Do you confirm to send money?',
             html:
-                'Amount: ' + amount + '<br>' +
-                'Current Balance: ' + balance,
+                'Amount: ' + formattedAmount + ' TK' + '<br>' +
+                'Current Balance: ' + formattedBal + ' TK',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ok'
+            confirmButtonText: 'Yes, Send'
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
@@ -47,8 +72,8 @@ const SendMoney = () => {
                         setBalance(r.currentBalance);
                         Swal.fire(
                             r.message,
-                         `Your current balance is ${formattedBalance} Trnx ID: ${r.trnxId}`,
-                          'success'
+                            `Your current balance is ${formattedBalance} TK Fee ${r.fee} TK Trnx ID: ${r.trnxId}`,
+                            'success'
                         );
                     } else {
                         Swal.fire(

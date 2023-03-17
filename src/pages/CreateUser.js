@@ -32,9 +32,9 @@ const CreateUser = () => {
             });
             console.log(response.data);
             Swal.fire(
-                'Successfuly Saved User!',
-                'You clicked the button!',
-                'success'
+                'warning',
+                response.data.message,
+                'warning'
             );
             event.target.reset();
         } catch (error) {

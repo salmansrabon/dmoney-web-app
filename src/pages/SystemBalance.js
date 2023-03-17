@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 const SystemBalance = () => {
     const [balance, setBalance] = useState(null);
 
+    const formattedNum = balance ? balance.toLocaleString("en-US") : "";
+
     useEffect(() => {
         async function fetchData() {
             const headers = {
@@ -38,7 +40,7 @@ const SystemBalance = () => {
     return <>
         <div className="card">
             <div className="card-body">
-                <h3>This is Our System Balance: {balance}</h3>
+                <h3>This is Our System Balance: {formattedNum} TK</h3>
             </div>
         </div>
     </>

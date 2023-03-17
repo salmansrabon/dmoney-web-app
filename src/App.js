@@ -40,7 +40,7 @@ function App() {
                     <Route exact path='/statement' element={userRole === 'Customer' || userRole === 'Agent' || userRole === 'Merchant' ? <CustomerStatement /> : <LoginPage />} />
                     <Route exact path='/user-limit' element={userRole === 'Customer' ? <UserLimit /> : <LoginPage />} />
                     <Route exact path='/my-profile' element={userRole === 'Customer' || userRole === 'Admin' || userRole === 'Agent' || userRole === 'Merchant' ? <Profile /> : <LoginPage />} />
-                    {/* <Route exact path='/system-balance' element={userRole === 'Admin' ? <SystemBalance /> : <LoginPage />} /> */}
+                    <Route exact path='/system-balance' element={userRole === 'Admin' ? <SystemBalance /> : <LoginPage />} />
                 </Routes>
             </Suspense>
         </Router>

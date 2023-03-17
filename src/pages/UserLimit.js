@@ -12,6 +12,8 @@ const UserLimit = () => {
     const user = JSON.parse(userString);
     const customer_phone_number = user.phone_number;
 
+    
+
     try {
       const response = await axios.get(`/transaction/limit/${customer_phone_number}`, {
         headers: {

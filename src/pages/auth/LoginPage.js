@@ -72,7 +72,8 @@ const LoginPage = () => {
 
     return <>
         <form className="login-form" onSubmit={handleSubmit}>
-            <div className="d-flex align-items-center my-4">
+        <h1 className="mt-5">Welcome to D-money Finance</h1>
+            <div className="d-flex align-items-center my-4 mt-5">
                 <h1 className="text-center fw-normal mb-0 me-3">Sign In</h1>
             </div>
             {/* <!-- Email input --> */}
