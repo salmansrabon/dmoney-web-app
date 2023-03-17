@@ -31,11 +31,19 @@ const CreateUser = () => {
                 }
             });
             console.log(response.data);
-            Swal.fire(
-                'warning',
-                response.data.message,
-                'warning'
-            );
+            if (response.status === 201) {
+                Swal.fire(
+                    'Success',
+                    response.data.message,
+                    'success'
+                );
+            } else if (response.status === 208) {
+                Swal.fire(
+                    'Warning',
+                    response.data.message,
+                    'warning'
+                );
+            }
             event.target.reset();
         } catch (error) {
             console.log(error);

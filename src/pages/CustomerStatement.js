@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 
 const CustomerStatement = () => {
     const [transactions, setTransaction] = useState([]);
-    const [balance, setBalance] = useState(null);
+    const [balance, setBalance] = useState(0);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
     const [isLoading, setIsLoading] = useState(false);
@@ -130,8 +130,8 @@ const CustomerStatement = () => {
                                         <td>{item.from_account}</td>
                                         <td>{item.to_account}</td>
                                         <td>{item.trnxId}</td>
-                                        <td>{item.debit} TK</td>
-                                        <td>{item.credit} TK</td>
+                                        <td>{item.debit.toLocaleString('en-US')} TK</td>
+                                        <td>{item.credit.toLocaleString('en-US')} TK</td>
                                         <td>{formatDate(item.createdAt)}</td>
                                         <td>{formatDate(item.updatedAt)}</td>
                                     </tr>

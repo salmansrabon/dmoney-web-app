@@ -47,6 +47,17 @@ const Payment = () => {
 
         const formattedAmount = amount.toLocaleString('en-US');
         const formattedBal = balance.toLocaleString('en-US');
+
+        if (amount > balance) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Insufficient balance!',
+                html:
+                    'Entered Amount: ' + formattedAmount + ' TK' + '<br>' +
+                    'Current Balance: ' + formattedBal + ' TK'
+            });
+            return;
+        }
         Swal.fire({
             title: 'Are you sure to do payment?',
             icon: 'warning',
@@ -70,12 +81,13 @@ const Payment = () => {
                     var r = response.data;
                     if(r.currentBalance){
                         const formattedBalance = r.currentBalance.toLocaleString('en-US');
+                        const fee = r.fee || 0;
                         setBalance(r.currentBalance);
                         Swal.fire(
                             r.message,
-                         `Your current balance is ${formattedBalance} TK Fee ${r.fee} TK Trnx ID: ${r.trnxId}`,
-                          'success'
-                        );
+                            `Your current balance is ${formattedBalance} TK ${fee ? `Fee ${fee} TK` : ''} Trnx ID: ${r.trnxId}`,
+                            'success'
+                          );
                     }else{
                         Swal.fire(
                             'Warning!',
