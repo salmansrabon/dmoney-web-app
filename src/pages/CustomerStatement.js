@@ -9,6 +9,8 @@ const CustomerStatement = () => {
     const [balance, setBalance] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(10);
+    const [isLoading, setIsLoading] = useState(false);
+    const [message, setMessage] = useState('');
     const formattedNum = balance ? balance.toLocaleString("en-US") : "";
 
     function formatDate(dateString) {
@@ -26,24 +28,24 @@ const CustomerStatement = () => {
     
       const totalPages = Math.ceil(transactions.length / itemsPerPage);
 
-    const handleStatement = async () => {
-        const userString = localStorage.getItem('user');
-        const user = JSON.parse(userString);
-        const customer_phone_number = user.phone_number;
+    // const handleStatement = async () => {
+    //     const userString = localStorage.getItem('user');
+    //     const user = JSON.parse(userString);
+    //     const customer_phone_number = user.phone_number;
 
-        try {
-            const response = await axios.get(`/transaction/statement/${customer_phone_number}`, {
-                headers: {
-                    'Authorization': `${localStorage.getItem('token')}`,
-                    'X-Auth-Secret-Key': 'ROADTOSDET'
-                }
-            });
-            setTransaction(response.data.transactions);
-        } catch (error) {
-            Swal.fire('Error', error.response.data.message || 'Something went wrong', 'error')
-            console.log(error);
-        }
-    };
+    //     try {
+    //         const response = await axios.get(`/transaction/statement/${customer_phone_number}`, {
+    //             headers: {
+    //                 'Authorization': `${localStorage.getItem('token')}`,
+    //                 'X-Auth-Secret-Key': 'ROADTOSDET'
+    //             }
+    //         });
+    //         setTransaction(response.data.transactions);
+    //     } catch (error) {
+    //         Swal.fire('Error', error.response.data.message || 'Something went wrong', 'error')
+    //         console.log(error);
+    //     }
+    // };
 
     const userString = localStorage.getItem('user');
     const user = JSON.parse(userString);
@@ -61,6 +63,12 @@ const CustomerStatement = () => {
           };
       
           try {
+            const response = await axios.get(`/transaction/statement/${customer_phone_number}`, config);
+             setTransaction(response.data.transactions);
+             setIsLoading(false);
+            if (response.data.length === 0) {
+             setMessage('No data found');
+             }
             await axios.get(`/transaction/balance/${customer_phone_number}`, config)
               .then((response) => {
                 console.log(response.data);
@@ -88,9 +96,9 @@ const CustomerStatement = () => {
         <div className="card">
             <div className="card-body">
                 <div className="row">
-                    <div className="col">
+                    {/* <div className="col">
                         <button type="button" className="btn btn-primary" onClick={handleStatement}>Check Statement</button>
-                    </div>
+                    </div> */}
                     <div className="col">
                      <h2 style={{fontWeight: "bold"}}>Balance: {formattedNum}&nbsp;TK</h2>
                   </div>
@@ -102,7 +110,7 @@ const CustomerStatement = () => {
                                 <tr>
                                     <th>ID</th>
                                     <th>Phone Number</th>
-                                    <th>Account</th>
+                                    <th>Description</th>
                                     <th>From Account</th>
                                     <th>To Account</th>
                                     <th>TRNXID</th>
@@ -122,8 +130,8 @@ const CustomerStatement = () => {
                                         <td>{item.from_account}</td>
                                         <td>{item.to_account}</td>
                                         <td>{item.trnxId}</td>
-                                        <td>{item.debit}</td>
-                                        <td>{item.credit}</td>
+                                        <td>{item.debit} TK</td>
+                                        <td>{item.credit} TK</td>
                                         <td>{formatDate(item.createdAt)}</td>
                                         <td>{formatDate(item.updatedAt)}</td>
                                     </tr>

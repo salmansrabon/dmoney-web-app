@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import adminLayout from "../hoc/adminLayout"
 import Swal from 'sweetalert2'
@@ -12,6 +12,30 @@ const Deposit = () => {
     const user = JSON.parse(userString);
     const fromAccount = user.phone_number;
 
+    useEffect(() => {
+        async function fetchData() {
+            const headers = {
+                'Authorization': localStorage.getItem('token'),
+                'X-Auth-Secret-Key': 'ROADTOSDET'
+            };
+
+            const config = {
+                headers: headers
+            };
+
+            await axios.get(`/transaction/balance/${fromAccount}`, config)
+                .then((response) => {
+                    console.log(response.data);
+                    setBalance(response?.data?.balance);
+                })
+                .catch((error) => {
+                    console.log(error);
+                });
+        }
+
+        fetchData();
+    }, [localStorage.getItem('token')]);
+
     const handleSubmit = async event => {
         event.preventDefault();
         const data = {
@@ -19,13 +43,14 @@ const Deposit = () => {
             to_account: toAccount,
             amount: Number(amount)
         };
-
+        const formattedAmount = amount.toLocaleString('en-US');
+        const formattedBal = balance.toLocaleString('en-US');
         Swal.fire({
             title: 'Are you sure to do deposit?',
             icon: 'warning',
             html:
-            'Amount: ' + amount + '<br>' +
-            'Current Balance: ' + balance,
+            'Amount: ' + formattedAmount + ' TK' + '<br>' +
+            'Current Balance: ' + formattedBal + ' TK',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
@@ -46,7 +71,7 @@ const Deposit = () => {
                         setBalance(r.currentBalance);
                         Swal.fire(
                             r.message,
-                         `Your current balance is ${formattedBalance} Trnx ID: ${r.trnxId}`,
+                         `Your current balance is ${formattedBalance} TK Fee ${r.fee} TK Trnx ID: ${r.trnxId}`,
                           'success'
                         );
                     }else{

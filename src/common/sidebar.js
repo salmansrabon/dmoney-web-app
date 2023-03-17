@@ -33,6 +33,11 @@ const Sidebar = () => {
                             Transaction
                         </Link>
                     </li>
+                    <li className="mb-1">
+                        <Link tag="a" className="" to="/system-balance">
+                            System Balance
+                        </Link>
+                    </li>
                 </ul>
             </PerfectScrollbar>
         </div>

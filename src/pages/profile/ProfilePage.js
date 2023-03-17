@@ -78,8 +78,8 @@ const ProfilePage = () => {
             const response = await axios.put(`/user/update/${id}`, data, config);
             console.log(response.data);
             Swal.fire(
-                'Successfuly Saved User!',
-                'You clicked the button!',
+                'Success!',
+                'User Update Successfully!',
                 'success'
             );
         } catch (error) {
@@ -147,7 +147,7 @@ const ProfilePage = () => {
                         </select>
                     </div>
                 </div>
-                <button type="submit" className="btn btn-default">Submit</button>
+                <button type="submit" className="btn btn-default">Update</button>
             </form>
         </div>
 

@@ -24,6 +24,10 @@ const UserList = () => {
     return new Date(dateString).toLocaleDateString('en-US', options);
   }
 
+  const userString = localStorage.getItem('user');
+  const user = JSON.parse(userString);
+  const customer_phone_number = user?.phone_number;
+
   const navigate = useNavigate();
 
   const handleUpdateUser = (id) => {
@@ -44,8 +48,16 @@ const UserList = () => {
       try {
         const response = await axios.get('/user/list', config);
         setUsers(response.data.users);
-        const response3 = await axios.get('/transaction/balance/SYSTEM', config);
-        setBalance(response3.data.balance);
+
+
+        await axios.get(`/transaction/balance/${customer_phone_number}`, config)
+          .then((response) => {
+            console.log(response.data);
+            setBalance(response?.data?.balance);
+          })
+          .catch((error) => {
+            console.log(error);
+          });
 
       } catch (error) {
         console.log(error);
@@ -148,9 +160,7 @@ const UserList = () => {
     return <div>Error: {error.message}</div>;
   }
 
-
-
-  return <>
+return <>
     <div className="card">
       <div className="card-body">
         <div className="row mb-2">
@@ -159,11 +169,13 @@ const UserList = () => {
           </div>
           <div className="col">
             <div>
-              <h2>Balance: {formattedNum} &nbsp;TK</h2>
+              <div>
+              <h2>Balance: {formattedNum} TK</h2>
+            </div>
             </div>
           </div>
           <div className='col'>
-            <input type="text" className="form-control" placeholder="Search...Only Phone Number" value={searchText} onChange={e => setSearchText(e.target.value)} />
+            <input type="text" className="form-control" placeholder="Search list" value={searchText} onChange={e => setSearchText(e.target.value)} />
           </div>
         </div>
         <div className="">
