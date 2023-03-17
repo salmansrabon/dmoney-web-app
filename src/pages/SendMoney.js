@@ -46,10 +46,21 @@ const SendMoney = () => {
         };
         const formattedAmount = amount.toLocaleString('en-US');
         const formattedBal = balance.toLocaleString('en-US');
+
+        if (amount > balance) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Insufficient balance!',
+                html:
+                    'Entered Amount: ' + formattedAmount + ' TK' + '<br>' +
+                    'Current Balance: ' + formattedBal + ' TK'
+            });
+            return;
+        }
         Swal.fire({
             icon: 'warning',
-            title: 'Do you confirm to send money?',
             html:
+                '<b>' + 'Do you confirm to send money?' + '</b>' + '<br>' +
                 'Amount: ' + formattedAmount + ' TK' + '<br>' +
                 'Current Balance: ' + formattedBal + ' TK',
             showCancelButton: true,

@@ -45,6 +45,17 @@ const Deposit = () => {
         };
         const formattedAmount = amount.toLocaleString('en-US');
         const formattedBal = balance.toLocaleString('en-US');
+
+        if (amount > balance) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Insufficient balance!',
+                html:
+                    'Entered Amount: ' + formattedAmount + ' TK' + '<br>' +
+                    'Current Balance: ' + formattedBal + ' TK'
+            });
+            return;
+        }
         Swal.fire({
             title: 'Are you sure to do deposit?',
             icon: 'warning',

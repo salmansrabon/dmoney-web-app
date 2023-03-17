@@ -130,8 +130,8 @@ const CustomerStatement = () => {
                                         <td>{item.from_account}</td>
                                         <td>{item.to_account}</td>
                                         <td>{item.trnxId}</td>
-                                        <td>{item.debit} TK</td>
-                                        <td>{item.credit} TK</td>
+                                        <td>{item.debit.toLocaleString('en-US')} TK</td>
+                                        <td>{item.credit.toLocaleString('en-US')} TK</td>
                                         <td>{formatDate(item.createdAt)}</td>
                                         <td>{formatDate(item.updatedAt)}</td>
                                     </tr>
