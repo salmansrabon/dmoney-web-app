@@ -20,22 +20,22 @@ const Sidebar = () => {
                 <ul className="list-unstyled ps-0">
                     <li className="mb-1">
                         <Link tag="a" className="" to="/user-list">
-                             User List
+                        <i class="fa fa-users" aria-hidden="true"></i> User List
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/create-user">
-                             Create User
+                        <i class="fa fa-user-plus" aria-hidden="true"></i> Create User
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/transaction">
-                            Transaction
+                        <i class="fa fa-exchange" aria-hidden="true"></i> Transaction
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/system-balance">
-                            System Balance
+                        <i class="fa fa-money" aria-hidden="true"></i> System Balance
                         </Link>
                     </li>
                 </ul>
@@ -55,17 +55,17 @@ const Sidebar = () => {
                 <ul className="list-unstyled ps-0">
                 <li className="mb-1">
                         <Link tag="a" className="" to="/statement">
-                             Statement
+                        <i class="fa fa-file-text-o" aria-hidden="true"></i> Statement
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/payment">
-                            Payment
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Payment
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/deposit">
-                            Deposit
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Deposit
                         </Link>
                     </li>
                     
@@ -86,28 +86,28 @@ const Sidebar = () => {
                 <ul className="list-unstyled ps-0">
                 <li className="mb-1">
                         <Link tag="a" className="" to="/statement">
-                             Statement
+                        <i class="fa fa-file-text-o" aria-hidden="true"></i> Statement
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/send-money">
-                            Send Money
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Send Money
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/withdraw">
-                             Withdraw
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdraw
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/payment">
-                            Payment
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Payment
                         </Link>
                     </li>
                     
                     <li className="mb-1">
                         <Link tag="a" className="" to="/user-limit">
-                             Limit
+                        <i class="fa fa-ban" aria-hidden="true"></i> Limit
                         </Link>
                     </li>
                     
@@ -128,12 +128,12 @@ const Sidebar = () => {
                 <ul className="list-unstyled ps-0">
                 <li className="mb-1">
                         <Link tag="a" className="" to="/statement">
-                             Statement
+                        <i class="fa fa-file-text-o" aria-hidden="true"></i> Statement
                         </Link>
                     </li>
                     <li className="mb-1">
                         <Link tag="a" className="" to="/withdraw">
-                             Withdraw
+                        <i class="fa fa-paper-plane" aria-hidden="true"></i> Withdraw
                         </Link>
                     </li>
                     

@@ -110,7 +110,7 @@ const Deposit = () => {
         <form onSubmit={handleSubmit}>
             <div className="card">
                 <div className="card-body">
-                    <h5>Deposit</h5><hr />
+                    <h5><i class="fa fa-paper-plane" aria-hidden="true"></i> Deposit</h5><hr />
                     <div className="row mt-4">
                         <div className="col-1">
                             <label className="form-label">Customer A/C</label>
@@ -136,7 +136,8 @@ const Deposit = () => {
                         </div>
                     </div>
                     <div className="mt-2">
-                        <button type="submit" className="btn btn-primary">Deposit</button>
+                        <button type="submit" className="btn btn-primary" style={{borderRadius: "3px"}}>Deposit 
+                        </button>
                     </div>
                 </div>
             </div>

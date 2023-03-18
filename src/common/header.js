@@ -22,9 +22,9 @@ const Header = () => {
                             aria-haspopup="true" aria-expanded="false"><i className="fa fa-user-circle" aria-hidden="true" ></i></a>
                             <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                             {/* <Link className="dropdown-item" to="/profile">Edit Profile</Link> */}
-                            <Link className="dropdown-item" to="/my-profile">Profile</Link>
+                            <Link className="dropdown-item" to="/my-profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</Link>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" onClick={handleLogout}>Sign out</Link>
+                                <Link className="dropdown-item" onClick={handleLogout}><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</Link>
                             </div>
                         </li>
                     </ul>
@@ -45,9 +45,9 @@ const Header = () => {
                             <a className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false"><i className="fa fa-user-circle" aria-hidden="true" ></i></a>
                             <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" to="/my-profile">Profile</Link>
+                            <Link className="dropdown-item" to="/my-profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</Link>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" onClick={handleLogout}>Sign out</Link>
+                                <Link className="dropdown-item" onClick={handleLogout}><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</Link>
                             </div>
                         </li>
                     </ul>
@@ -68,9 +68,9 @@ const Header = () => {
                             <a className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false"><i className="fa fa-user-circle" aria-hidden="true" ></i></a>
                             <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" to="/my-profile">Profile</Link>
+                            <Link className="dropdown-item" to="/my-profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</Link>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" onClick={handleLogout}>Sign out</Link>
+                                <Link className="dropdown-item" onClick={handleLogout}><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</Link>
                             </div>
                         </li>
                     </ul>
@@ -91,9 +91,9 @@ const Header = () => {
                             <a className="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
                             aria-haspopup="true" aria-expanded="false"><i className="fa fa-user-circle" aria-hidden="true" ></i></a>
                             <div className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <Link className="dropdown-item" to="/my-profile">Profile</Link>
+                            <Link className="dropdown-item" to="/my-profile"><i class="fa fa-user" aria-hidden="true"></i> Profile</Link>
                                 <div className="dropdown-divider"></div>
-                                <Link className="dropdown-item" onClick={handleLogout}>Sign out</Link>
+                                <Link className="dropdown-item" onClick={handleLogout}><i class="fa fa-sign-out" aria-hidden="true"></i> Sign out</Link>
                             </div>
                         </li>
                     </ul>

@@ -102,6 +102,9 @@ const CustomerStatement = () => {
                     <div className="col">
                      <h2 style={{fontWeight: "bold"}}>Balance: {formattedNum}&nbsp;TK</h2>
                   </div>
+                  <div className="col text-right">
+                  <button type="button" class="btn btn-outline-secondary"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
+                  </div>
                 </div>
                 <div className="row mt-3">
                     <div className="col">
