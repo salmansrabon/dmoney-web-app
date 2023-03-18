@@ -174,11 +174,17 @@ return <>
             </div>
             </div>
           </div>
-          <div className='col'>
+          <div className="col text-right">
+                  <button type="button" class="btn btn-outline-secondary"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
+                  </div>
+        </div>
+        <div className="row mt-2">
+        <div className="col-9"></div>
+        <div className='col'>
             <input type="text" className="form-control" placeholder="Search list" value={searchText} onChange={e => setSearchText(e.target.value)} />
           </div>
         </div>
-        <div className="">
+        <div className="mt-2">
           <table className="table">
             <thead>
               <tr>

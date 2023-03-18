@@ -112,7 +112,7 @@ const Payment = () => {
             <form onSubmit={handleSubmit}>
             <div className="card">
                 <div className="card-body">
-                    <h5>Payment</h5><hr />
+                    <h5><i class="fa fa-paper-plane" aria-hidden="true"></i> Payment</h5><hr />
                     <div className="row mt-4">
                         <div className="col-1">
                             <label className="form-label">To Merchant</label>
@@ -140,7 +140,8 @@ const Payment = () => {
 
 
                     <div className="mt-2">
-                        <button type="submit" className="btn btn-primary">Send</button>
+                        <button type="submit" className="btn btn-primary" style={{borderRadius: "3px"}}>Send 
+                        </button>
                     </div>
                 </div>
             </div>
