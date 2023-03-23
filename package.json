@@ -27,7 +27,8 @@
   "proxy": "https://dmoney.roadtocareer.net",
   "scripts": {
     "start": "react-scripts start",
-    "predeploy":"npm run build",
+    "start-with-permissions": "cross-env Permissions-Policy=interest-cohort=() react-scripts start",
+    "predeploy":"npm run start-with-permissions",
     "deploy":"gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
