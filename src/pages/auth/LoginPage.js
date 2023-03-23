@@ -71,6 +71,7 @@ const LoginPage = () => {
     };
 
     return <>
+    <meta http-equiv="Permissions-Policy" content="interest-cohort=()"></meta>
         <form className="login-form" onSubmit={handleSubmit}>
         <h1 className="mt-5">Welcome to D-money Finance</h1>
             <div className="d-flex align-items-center my-4 mt-5">
