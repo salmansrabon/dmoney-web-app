@@ -19,7 +19,7 @@ const ProfilePage = () => {
         async function fetchData() {
             const headers = {
                 'Authorization': localStorage.getItem('token'),
-                'X-Auth-Secret-Key': 'ROADTOSDET'
+                'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
             };
 
             const config = {
@@ -36,6 +36,10 @@ const ProfilePage = () => {
                 setRole(response.data.user.role);
 
             } catch (error) {
+                if(error.response.status === 401){
+                    window.location.href = '/login';
+                    return;
+                }
                 setName('');
                 setEmail('');
                 setPassword('');
@@ -70,7 +74,7 @@ const ProfilePage = () => {
         const config = {
             headers: {
                 'Authorization': `${localStorage.getItem('token')}`,
-                'X-Auth-Secret-Key': 'ROADTOSDET'
+                'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
             }
         };
 
@@ -83,7 +87,10 @@ const ProfilePage = () => {
                 'success'
             );
         } catch (error) {
-            console.log(error);
+            if(error.response.status === 401){
+                window.location.href = '/login';
+                return;
+            }
             Swal.fire(
                 'Error',
                 error.response.data.message || 'Something went wrong',

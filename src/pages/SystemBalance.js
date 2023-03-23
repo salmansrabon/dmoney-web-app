@@ -24,7 +24,10 @@ const SystemBalance = () => {
                 console.log(response.data.balance);
                 setBalance(response.data.balance);
             } catch (error) {
-                console.log(error);
+                if(error.response.status === 401){
+                    window.location.href = '/login';
+                    return;
+                }
                 Swal.fire(
                     'Error',
                     error.response.data.message || 'Something went wrong',

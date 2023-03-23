@@ -16,7 +16,7 @@ const Payment = () => {
         async function fetchData() {
             const headers = {
                 'Authorization': localStorage.getItem('token'),
-                'X-Auth-Secret-Key': 'ROADTOSDET'
+                'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
             };
 
             const config = {
@@ -74,7 +74,7 @@ const Payment = () => {
                     const response = await axios.post('/transaction/payment', data, {
                         headers: {
                             'Authorization': `${localStorage.getItem('token')}`,
-                            'X-Auth-Secret-Key': 'ROADTOSDET'
+                            'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                         }
                     });
                     console.log(response.data);
@@ -97,7 +97,10 @@ const Payment = () => {
                     }
                    
                 } catch (error) {
-                    console.log(error);
+                    if(error.response.status === 401){
+                        window.location.href = '/login';
+                        return;
+                    }
                     Swal.fire(
                         'Error',
                         error.response.data.message || 'Something went wrong',
@@ -140,7 +143,7 @@ const Payment = () => {
 
 
                     <div className="mt-2">
-                        <button type="submit" className="btn btn-primary" style={{borderRadius: "3px"}}>Send 
+                        <button type="submit" className="btn btn-primary" style={{borderRadius: "3px"}}>Payment 
                         </button>
                     </div>
                 </div>

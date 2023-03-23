@@ -28,7 +28,7 @@ const LoginPage = () => {
             await axios.get(`/user/list`, {
                 headers: {
                     'Authorization': response?.data?.token,
-                    'X-Auth-Secret-Key': 'ROADTOSDET'
+                    'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                 }
             })
                 .then((response) => {

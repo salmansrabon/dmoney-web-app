@@ -28,25 +28,6 @@ const CustomerStatement = () => {
     
       const totalPages = Math.ceil(transactions.length / itemsPerPage);
 
-    // const handleStatement = async () => {
-    //     const userString = localStorage.getItem('user');
-    //     const user = JSON.parse(userString);
-    //     const customer_phone_number = user.phone_number;
-
-    //     try {
-    //         const response = await axios.get(`/transaction/statement/${customer_phone_number}`, {
-    //             headers: {
-    //                 'Authorization': `${localStorage.getItem('token')}`,
-    //                 'X-Auth-Secret-Key': 'ROADTOSDET'
-    //             }
-    //         });
-    //         setTransaction(response.data.transactions);
-    //     } catch (error) {
-    //         Swal.fire('Error', error.response.data.message || 'Something went wrong', 'error')
-    //         console.log(error);
-    //     }
-    // };
-
     const userString = localStorage.getItem('user');
     const user = JSON.parse(userString);
     const customer_phone_number = user?.phone_number;
@@ -55,7 +36,7 @@ const CustomerStatement = () => {
         async function fetchData() {
           const headers = {
             'Authorization': localStorage.getItem('token'),
-            'X-Auth-Secret-Key': 'ROADTOSDET'
+            'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
           };
       
           const config = {
@@ -78,7 +59,10 @@ const CustomerStatement = () => {
                 console.log(error);
               });
           } catch (error) {
-            console.log(error);
+            if(error.response.status === 401){
+              window.location.href = '/login';
+              return;
+          }
             Swal.fire(
               'Error',
               error.response.data.message || 'Something went wrong',
@@ -100,7 +84,7 @@ const CustomerStatement = () => {
                         <button type="button" className="btn btn-primary" onClick={handleStatement}>Check Statement</button>
                     </div> */}
                     <div className="col">
-                     <h2 style={{fontWeight: "bold"}}>Balance: {formattedNum}&nbsp;TK</h2>
+                     <h2 style={{fontWeight: "bold"}}>Balance: {formattedNum || 0}&nbsp;TK</h2>
                   </div>
                   <div className="col text-right">
                   <button type="button" class="btn btn-outline-secondary"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>

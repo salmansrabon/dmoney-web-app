@@ -27,7 +27,7 @@ const CreateUser = () => {
             const response = await axios.post(`/user/create`, data, {
                 headers: {
                     'Authorization': `${localStorage.getItem('token')}`,
-                    'X-Auth-Secret-Key': 'ROADTOSDET'
+                    'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                 }
             });
             console.log(response.data);
@@ -47,6 +47,10 @@ const CreateUser = () => {
             event.target.reset();
         } catch (error) {
             console.log(error);
+            if(error.response.status === 401){
+                window.location.href = '/login';
+                return;
+            }
             Swal.fire(
                 'Error',
                 error.response.data.message || 'Something went wrong',

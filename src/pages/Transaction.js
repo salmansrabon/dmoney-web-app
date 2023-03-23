@@ -31,7 +31,7 @@ const Transaction = () => {
     async function fetchData() {
       const headers = {
         'Authorization': localStorage.getItem('token'),
-        'X-Auth-Secret-Key': 'ROADTOSDET'
+        'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
       };
 
       const config = {
@@ -55,7 +55,10 @@ const Transaction = () => {
             console.log(error);
           });
       } catch (error) {
-        console.log(error);
+        if(error.response.status === 401){
+          window.location.href = '/login';
+          return;
+      }
         setIsLoading(false);
         setMessage('Error fetching data');
         Swal.fire(
