@@ -18,11 +18,15 @@ const UserLimit = () => {
       const response = await axios.get(`/transaction/limit/${customer_phone_number}`, {
         headers: {
           'Authorization': `${localStorage.getItem('token')}`,
-          'X-Auth-Secret-Key': 'ROADTOSDET'
+          'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
         }
       });
       setLimit(response.data.limit);
     } catch (error) {
+      if(error.response.status === 401){
+        window.location.href = '/login';
+        return;
+    }
       const errorMessage = error.response?.data?.error || error.message || 'Something went wrong';
       Swal.fire('Error', errorMessage, 'error');
       console.error(error);
