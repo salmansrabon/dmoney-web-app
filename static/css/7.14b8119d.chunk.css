@@ -1,0 +1,2 @@
+.pagination{display:flex;justify-content:center;margin-top:20px}.pagination__button{border:none;background-color:#f0f0f0;color:#333;padding:10px 15px;cursor:pointer;margin-right:5px}.pagination__button--active{background-color:#333;color:#fff}.pagination__button:disabled{opacity:.5;cursor:not-allowed}.pagination__ellipsis{margin-right:5px}th{cursor:pointer}
+/*# sourceMappingURL=7.14b8119d.chunk.css.map */
