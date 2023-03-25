@@ -25,7 +25,7 @@ function App() {
         <Router forceRefresh={true}>
             <Suspense fallback={<div>Loading...</div>}>
                 <Routes>
-                    <Route exact path='/' element={<LoginPage />} />
+                    <Route exact path='/dmoney-web-app' element={<LoginPage />} />
                     <Route exact path='/login' element={<LoginPage />} />
                     <Route exact path='/deposit' element={userRole === 'Agent' ? <Deposit /> : <LoginPage />} />
                     <Route exact path='/profile/:id' element={userRole === 'Admin' ? <ProfilePage /> : <LoginPage />} />
