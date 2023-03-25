@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import adminLayout from "../hoc/adminLayout"
-import axios from "axios";
+import action from "../action";
 import Swal from "sweetalert2";
 
 const SystemBalance = () => {
@@ -20,8 +20,8 @@ const SystemBalance = () => {
             };
 
             try {
-                const response = await axios.get('/transaction/balance/SYSTEM', config);
-                console.log(response.data.balance);
+                const response = await action.get('/transaction/balance/SYSTEM', config);
+                //console.log(response.data.balance);
                 setBalance(response.data.balance);
             } catch (error) {
                 if(error.response.status === 401){

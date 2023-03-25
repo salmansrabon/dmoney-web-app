@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../assets/css/login.css";
 import authLayout from "../../hoc/authLayout";
-import axios from "axios";
+import action from "../../action";
 import Swal from 'sweetalert2';
 
 const LoginPage = () => {
@@ -14,7 +14,7 @@ const LoginPage = () => {
         localStorage.setItem('email', email);
 
         try {
-            const response = await axios.post('/user/login', {
+            const response = await action.post('/user/login', {
                 email: email,
                 password: password
             }, {
@@ -23,16 +23,16 @@ const LoginPage = () => {
                 }
             });
             localStorage.setItem('token', response.data.token);
-            console.log(response.data.role);
+            //console.log(response.data.role);
             localStorage.setItem('role', response.data.role);
-            await axios.get(`/user/list`, {
+            await action.get(`/user/list`, {
                 headers: {
                     'Authorization': response?.data?.token,
                     'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                 }
             })
                 .then((response) => {
-                    console.log(response.data);
+                  //  console.log(response.data);
                     const user = response.data?.users?.find((user) => user.email === email);
                     if (user) {
                         localStorage.setItem('user', JSON.stringify(user));
@@ -41,7 +41,7 @@ const LoginPage = () => {
                     }
                 })
                 .catch((error) => {
-                    console.log(error);
+                   // console.log(error);
                     localStorage.setItem('user', null);
                 });
             if (response.data.role === "Admin") {
@@ -61,7 +61,7 @@ const LoginPage = () => {
                 window.location.href = '/login';
             }
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             Swal.fire(
                 'Error',
                 error.response.data.message || 'Something went wrong',
@@ -91,19 +91,8 @@ const LoginPage = () => {
                 <input type="password" id="form3Example4" className="form-control form-control-lg"
                     placeholder="Enter password" value={password} onChange={(event) => setPassword(event.target.value)} />
             </div>
-            {/* <div className="form-outline mb-3">
-                <label className="form-label" htmlFor="form3Example4">Role</label>
-                <select className="form-select form-select-lg" value={role} onChange={handleSelectChange}>
-                    <option value="Admin">Admin</option>
-                    <option value="Agent">Agent</option>
-                    <option value="Customer">Customer</option>
-
-                </select>
-            </div> */}
             <div className="text-center text-lg-start mt-4 pt-2">
                 <button type="submit" className="btn btn-primary btn-lg">Login</button>
-                {/* <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? 
-                    <Link to="/register" className="link-danger">Register</Link></p> */}
             </div>
         </form>
     </>

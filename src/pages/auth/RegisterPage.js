@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../assets/css/login.css"
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import action from "../../action";
 import authLayout from "../../hoc/authLayout";
 import Swal from "sweetalert2";
 
@@ -26,13 +26,13 @@ const RegisterPage = () => {
         };
 
         try {
-            const response = await axios.post('/user/create', data, {
+            const response = await action.post('/user/create', data, {
                 headers: {
                     'Authorization': `${localStorage.getItem('token')}`,
                     'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                 }
             });
-            console.log(response.data);
+           // console.log(response.data);
         } catch (error) {
             if(error.response.status === 401){
                 window.location.href = '/login';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import adminLayout from "../hoc/adminLayout"
 import './User.css';
-import axios from "axios";
+import action from "../action";
 import Swal from 'sweetalert2'
 import './User.css';
 import { useNavigate } from 'react-router-dom';
@@ -46,18 +46,18 @@ const UserList = () => {
       };
 
       try {
-        const response = await axios.get('/user/list', config);
+        const response = await action.get('/user/list', config);
         setUsers(response.data.users);
 
 
-        await axios.get(`/transaction/balance/${customer_phone_number}`, config)
+        await action.get(`/transaction/balance/${customer_phone_number}`, config)
           .then((response) => {
-            console.log(response.data);
+            //console.log(response.data);
             setBalance(response?.data?.balance);
           })
           .catch((error) => {
-            console.log('hi');
-            console.log(error);
+           // console.log('hi');
+            //console.log(error);
             if(error.response.status === 401){
               window.location.href = '/login';
               return;
@@ -65,7 +65,7 @@ const UserList = () => {
           });
 
       } catch (error) {
-        console.log(error);
+        //console.log(error);
         if(error.response.status === 401){
           window.location.href = '/login';
           return;
@@ -90,7 +90,7 @@ const UserList = () => {
     };
 
     try {
-      const response = await axios.delete(`/user/delete/${id}`, config);
+      const response = await action.delete(`/user/delete/${id}`, config);
       Swal.fire(
         'Success',
         'User deleted successfully',
@@ -187,7 +187,7 @@ return <>
             </div>
           </div>
           <div className="col text-right">
-                  <button type="button" class="btn btn-outline-secondary"><i class="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
+                  <button type="button" className="btn btn-outline-secondary"><i className="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
                   </div>
         </div>
         <div className="row mt-2">

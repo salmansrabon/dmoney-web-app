@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from "react";
 import adminLayout from "../hoc/adminLayout"
 import Swal from "sweetalert2";
-import axios from "axios";
+import action from "../action";
 
 const Payment = () => {
     const [to_account, settoAccount] = useState(null);
@@ -23,13 +23,13 @@ const Payment = () => {
                 headers: headers
             };
 
-            await axios.get(`/transaction/balance/${from_account}`, config)
+            await config.get(`/transaction/balance/${from_account}`, config)
                 .then((response) => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     setBalance(response?.data?.balance);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
         }
 
@@ -71,13 +71,13 @@ const Payment = () => {
           }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.post('/transaction/payment', data, {
+                    const response = await action.post('/transaction/payment', data, {
                         headers: {
                             'Authorization': `${localStorage.getItem('token')}`,
                             'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                         }
                     });
-                    console.log(response.data);
+                    //console.log(response.data);
                     var r = response.data;
                     if(r.currentBalance){
                         const formattedBalance = r.currentBalance.toLocaleString('en-US');

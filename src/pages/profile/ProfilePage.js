@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Swal from 'sweetalert2'
-import axios from "axios";
+import action from '../../action';
 import "../../assets/css/profile.css"
 import userProfileLayout from "../../hoc/userProfileLayout";
 import { useParams } from 'react-router-dom';
@@ -27,7 +27,7 @@ const ProfilePage = () => {
             };
 
             try {
-                const response = await axios.get('/user/search/id/' + id, config);
+                const response = await action.get('/user/search/id/' + id, config);
                 setName(response.data.user.name);
                 setEmail(response.data.user.email);
                 setPassword(response.data.user.password);
@@ -79,7 +79,7 @@ const ProfilePage = () => {
         };
 
         try {
-            const response = await axios.put(`/user/update/${id}`, data, config);
+            const response = await action.put(`/user/update/${id}`, data, config);
             console.log(response.data);
             Swal.fire(
                 'Success!',

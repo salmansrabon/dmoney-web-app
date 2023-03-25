@@ -12,7 +12,7 @@ const Sidebar = () => {
             // use the full return
             return <div className="border-end sidenav" id="sidebar-wrapper">
             <div className="sidebar-heading border-bottom ">
-                <Link to="/">
+                <Link to="/user-list">
                     <h5>Dmoney</h5>
                 </Link>
             </div>

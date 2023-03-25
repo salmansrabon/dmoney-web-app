@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import adminLayout from "../hoc/adminLayout"
-import axios from "axios";
+import action from "../action";
 import Swal from "sweetalert2";
 
 const UserLimit = () => {
@@ -15,7 +15,7 @@ const UserLimit = () => {
     
 
     try {
-      const response = await axios.get(`/transaction/limit/${customer_phone_number}`, {
+      const response = await action.get(`/transaction/limit/${customer_phone_number}`, {
         headers: {
           'Authorization': `${localStorage.getItem('token')}`,
           'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
@@ -29,7 +29,7 @@ const UserLimit = () => {
     }
       const errorMessage = error.response?.data?.error || error.message || 'Something went wrong';
       Swal.fire('Error', errorMessage, 'error');
-      console.error(error);
+      //console.error(error);
     }
   };
 

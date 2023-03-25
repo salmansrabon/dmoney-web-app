@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import userProfileLayout from "../../hoc/userProfileLayout";
-import axios from "axios";
+import action from "../../action";
 import Swal from "sweetalert2";
 
 const Profile = () => {
@@ -49,10 +49,11 @@ const Profile = () => {
         };
 
         try {
-            const response = await axios.put(`/user/update/${id}`, data, config);
-            console.log(response.data);
+            const response = await action.put(`/user/update/${id}`, data, config);
+            //console.log(response.data);
             localStorage.setItem('user', JSON.stringify(response.data.user));
             Swal.fire(
+                'Success',
                 'Successfuly update the user!',
                 'success'
             );

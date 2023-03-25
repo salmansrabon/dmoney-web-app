@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import action from "../action";
 import Swal from 'sweetalert2'
 import adminLayout from "../hoc/adminLayout"
 
@@ -23,13 +23,13 @@ const SendMoney = () => {
                 headers: headers
             };
 
-            await axios.get(`/transaction/balance/${from_account}`, config)
+            await action.get(`/transaction/balance/${from_account}`, config)
                 .then((response) => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     setBalance(response?.data?.balance);
                 })
                 .catch((error) => {
-                    console.log(error);
+                    //console.log(error);
                 });
         }
 
@@ -70,7 +70,7 @@ const SendMoney = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.post('/transaction/sendmoney', data, {
+                    const response = await action.post('/transaction/sendmoney', data, {
                         headers: {
                             'Authorization': `${localStorage.getItem('token')}`,
                             'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY

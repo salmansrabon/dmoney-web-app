@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import adminLayout from "../hoc/adminLayout"
-import axios from "axios";
+import action from "../action";
 import Swal from "sweetalert2";
 
 const CheckBalance = () => {
@@ -14,7 +14,7 @@ const CheckBalance = () => {
       const customer_phone_number = user.phone_number;
 
       try {
-        const response = await axios.get(`/transaction/balance/${customer_phone_number}`, {
+        const response = await action.get(`/transaction/balance/${customer_phone_number}`, {
           headers: {
             'Authorization': `${localStorage.getItem('token')}`,
             'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
@@ -28,7 +28,7 @@ const CheckBalance = () => {
       }
         const errorMessage = error.response.data.message || error.response?.data?.error || error.message || 'Something went wrong';
         Swal.fire('Error', errorMessage, 'error');
-        console.error(error);
+        //console.error(error);
       }
     }
 

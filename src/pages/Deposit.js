@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import action from "../action";
 import adminLayout from "../hoc/adminLayout"
 import Swal from 'sweetalert2'
 
@@ -23,13 +23,13 @@ const Deposit = () => {
                 headers: headers
             };
 
-            await axios.get(`/transaction/balance/${fromAccount}`, config)
+            await action.get(`/transaction/balance/${fromAccount}`, config)
                 .then((response) => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     setBalance(response?.data?.balance);
                 })
                 .catch((error) => {
-                    console.log(error);
+                   // console.log(error);
                 });
         }
 
@@ -69,21 +69,21 @@ const Deposit = () => {
           }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    const response = await axios.post(`/transaction/deposit`, data, {
+                    const response = await action.post(`/transaction/deposit`, data, {
                         headers: {
                             'Authorization': `${localStorage.getItem('token')}`,
                             'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                         }
                     });
-                    console.log(response.data);
+                    //console.log(response.data);
                     var r = response.data;
                     if (r?.currentBalance) {
                         const formattedBalance = r.currentBalance.toLocaleString('en-US');
-                        const fee = r.fee || 0;
+                        const commission = r.commission || 0;
                         setBalance(r.currentBalance);
                         Swal.fire(
                             r.message,
-                            `Your current balance is ${formattedBalance} TK ${fee ? `Fee ${fee} TK` : ''} Trnx ID: ${r.trnxId}`,
+                            `Your current balance is ${formattedBalance} TK ${commission ? `Fee ${commission} TK` : ''} Trnx ID: ${r.trnxId}`,
                             'success'
                           );
                     }else{

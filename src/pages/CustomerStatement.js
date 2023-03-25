@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import adminLayout from "../hoc/adminLayout"
-import axios from "axios";
+import action from "../action";
 import './User.css';
 import Swal from "sweetalert2";
 
@@ -44,19 +44,19 @@ const CustomerStatement = () => {
           };
       
           try {
-            const response = await axios.get(`/transaction/statement/${customer_phone_number}`, config);
+            const response = await action.get(`/transaction/statement/${customer_phone_number}`, config);
              setTransaction(response.data.transactions);
              setIsLoading(false);
             if (response.data.length === 0) {
              setMessage('No data found');
              }
-            await axios.get(`/transaction/balance/${customer_phone_number}`, config)
+            await action.get(`/transaction/balance/${customer_phone_number}`, config)
               .then((response) => {
-                console.log(response.data);
+                //console.log(response.data);
                 setBalance(response?.data?.balance);
               })
               .catch((error) => {
-                console.log(error);
+                //console.log(error);
               });
           } catch (error) {
             if(error.response.status === 401){

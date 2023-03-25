@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import adminLayout from "../hoc/adminLayout"
-import axios from "axios";
+import action from "../action";
 import Swal from "sweetalert2";
 
 const AgentStatement = () => {
@@ -9,7 +9,7 @@ const AgentStatement = () => {
 
     const handleStatement = async (customer_phone_number) => {
         try {
-            const response = await axios.get(`/transaction/statement/${{ customer_phone_number }}`, {
+            const response = await action.get(`/transaction/statement/${{ customer_phone_number }}`, {
                 headers: {
                     'Authorization': `${localStorage.getItem('token')}`,
                     'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
@@ -22,7 +22,7 @@ const AgentStatement = () => {
                 return;
             }
             Swal.fire('Error', error.response.data.message || 'Something went wrong', 'error')
-            console.log(error);
+           // console.log(error);
         }
     };
 

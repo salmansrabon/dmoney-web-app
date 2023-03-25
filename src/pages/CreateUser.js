@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import adminLayout from "../hoc/adminLayout"
-import axios from "axios";
+import action from "../action";
 import Swal from 'sweetalert2'
 
 const CreateUser = () => {
@@ -24,13 +24,13 @@ const CreateUser = () => {
         };
 
         try {
-            const response = await axios.post(`/user/create`, data, {
+            const response = await action.post(`/user/create`, data, {
                 headers: {
                     'Authorization': `${localStorage.getItem('token')}`,
                     'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                 }
             });
-            console.log(response.data);
+           // console.log(response.data);
             if (response.status === 201) {
                 Swal.fire(
                     'Success',
@@ -46,7 +46,7 @@ const CreateUser = () => {
             }
             event.target.reset();
         } catch (error) {
-            console.log(error);
+            //console.log(error);
             if(error.response.status === 401){
                 window.location.href = '/login';
                 return;
