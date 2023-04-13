@@ -186,13 +186,7 @@ return <>
             </div>
             </div>
           </div>
-          <div className="col text-right">
-                  <button type="button" className="btn btn-outline-secondary"><i className="fa fa-file-excel-o" aria-hidden="true"></i> Export</button>
-                  </div>
-        </div>
-        <div className="row mt-2">
-        <div className="col-9"></div>
-        <div className='col'>
+          <div className='col'>
             <input type="text" className="form-control" placeholder="Search list" id="searchText" value={searchText} onChange={e => setSearchText(e.target.value)} />
           </div>
         </div>
