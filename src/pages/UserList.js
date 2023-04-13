@@ -193,7 +193,7 @@ return <>
         <div className="row mt-2">
         <div className="col-9"></div>
         <div className='col'>
-            <input type="text" className="form-control" placeholder="Search list" value={searchText} onChange={e => setSearchText(e.target.value)} />
+            <input type="text" className="form-control" placeholder="Search list" id="searchText" value={searchText} onChange={e => setSearchText(e.target.value)} />
           </div>
         </div>
         <div className="mt-2">

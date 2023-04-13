@@ -78,17 +78,17 @@ const LoginPage = () => {
             </div>
             {/* <!-- Email input --> */}
             <div className="form-outline mb-4">
-                <label className="form-label" htmlFor="form3Example3">Email address</label>
-                <input type="email" id="form3Example3" className="form-control form-control-lg"
-                    placeholder="Enter a valid email address" name="username"
+                <label className="form-label" htmlFor="email">Email address</label>
+                <input type="email" id="email" className="form-control form-control-lg"
+                    placeholder="Enter a valid email address" name="email"
                     value={email} onChange={(event) => setEmail(event.target.value)}
                 />
             </div>
 
             {/* <!-- Password input --> */}
             <div className="form-outline mb-3">
-                <label className="form-label" htmlFor="form3Example4">Password</label>
-                <input type="password" id="form3Example4" className="form-control form-control-lg"
+                <label className="form-label" htmlFor="password">Password</label>
+                <input type="password" id="password" className="form-control form-control-lg"
                     placeholder="Enter password" value={password} onChange={(event) => setPassword(event.target.value)} />
             </div>
             <div className="text-center text-lg-start mt-4 pt-2">

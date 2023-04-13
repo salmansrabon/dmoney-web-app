@@ -107,14 +107,14 @@ const ProfilePage = () => {
                     <div className="col">
                         <label className="form-label">Name</label>
                         <div className="input-group mb-3">
-                            <input type="text" className="form-control" placeholder="Name"
+                            <input type="text" id="name" className="form-control" placeholder="Name"
                                 value={name} onChange={(e) => setName(e.target.value)} required/>
                         </div>
                     </div>
                     <div className="col">
                         <label className="form-label">Email address</label>
                         <div className="input-group mb-3">
-                            <input type="email" className="form-control" placeholder="Email Address"
+                            <input type="email" id="email" className="form-control" placeholder="Email Address"
                                 name="email" value={email} onChange={(e) => setEmail(e.target.value)} required/>
                         </div>
                     </div>
@@ -123,7 +123,7 @@ const ProfilePage = () => {
                     <div className="col">
                         <label className="form-label">Password</label>
                         <div className="input-group mb-3">
-                            <input type="password" className="form-control" placeholder="Password" name="password"
+                            <input type="password" id="password" className="form-control" placeholder="Password" name="password"
                                 value={password} onChange={(e) => setPassword(e.target.value)} required/>
                         </div>
                     </div>
@@ -131,7 +131,7 @@ const ProfilePage = () => {
                         <label className="form-label">Phone Number</label>
                         <div className="input-group mb-3">
                             <input type="text" className="form-control" placeholder="Phone Number" name="phoneNumber"
-                                value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} required/>
+                                value={phoneNumber} id="phoneNumber" onChange={(e) => setPhoneNumber(e.target.value)} required/>
                         </div>
                     </div>
                 </div>
@@ -141,12 +141,12 @@ const ProfilePage = () => {
                         <label className="form-label">NID</label>
                         <div className="input-group mb-3">
                             <input type="text" className="form-control" placeholder="NID" name="nid"
-                                value={nid} onChange={(e) => setNid(e.target.value)} required/>
+                                value={nid} id="nid" onChange={(e) => setNid(e.target.value)} required/>
                         </div>
                     </div>
                     <div className="col">
                         <label className="form-label">Role</label>
-                        <select className="form-select" name="role" value={role} onChange={(e) => setRole(e.target.value)} required>
+                        <select className="form-select" id="role" name="role" value={role} onChange={(e) => setRole(e.target.value)} required>
                             <option value="">Select</option>
                             <option value="Admin">Admin</option>
                             <option value="Customer">Customer</option>

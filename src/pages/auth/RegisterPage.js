@@ -54,16 +54,16 @@ const RegisterPage = () => {
             <div className="row">
                 <div className="col">
                     <div className="form-outline mb-4">
-                        <label className="form-label" htmlFor="form3Example3">Name</label>
-                        <input type="text" id="form3Example3" className="form-control form-control-lg"
+                        <label className="form-label" htmlFor="name">Name</label>
+                        <input type="text" id="name" className="form-control form-control-lg"
                             placeholder="Enter Your Full Name" value={name} onChange={e => setName(e.target.value)} />
                     </div>
                 </div>
                 <div className="col">
                     {/* <!-- Email input --> */}
                     <div className="form-outline mb-4">
-                        <label className="form-label" htmlFor="form3Example3">Email address</label>
-                        <input type="email" id="form3Example3" className="form-control form-control-lg"
+                        <label className="form-label" htmlFor="email">Email address</label>
+                        <input type="email" id="email" className="form-control form-control-lg"
                             placeholder="Enter a valid email address" value={email} onChange={e => setEmail(e.target.value)} />
                     </div>
                 </div>
@@ -72,30 +72,30 @@ const RegisterPage = () => {
                 <div className="col">
                     {/* <!-- Password input --> */}
                     <div className="form-outline mb-3">
-                        <label className="form-label" htmlFor="form3Example4">Password</label>
-                        <input type="password" id="form3Example4" className="form-control form-control-lg"
+                        <label className="form-label" htmlFor="password">Password</label>
+                        <input type="password" id="password" className="form-control form-control-lg"
                             placeholder="Enter password" value={password} onChange={e => setPassword(e.target.value)} />
                     </div>
                 </div>
                 <div className="col">
                     {/* <!-- Phone Number input --> */}
                     <div className="form-outline mb-3">
-                        <label className="form-label" htmlFor="form3Example5">Phone</label>
-                        <input type="text" id="form3Example4" className="form-control form-control-lg"
+                        <label className="form-label" htmlFor="phoneNumber">Phone</label>
+                        <input type="text" id="phoneNumber" className="form-control form-control-lg"
                             placeholder="Enter Your Phone Number" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
                     </div>
                 </div>
             </div>
             {/* <!-- NID input --> */}
             <div className="form-outline mb-3">
-                <label className="form-label" htmlFor="form3Example6">NID</label>
-                <input type="text" id="form3Example4" className="form-control form-control-lg"
+                <label className="form-label" htmlFor="nid">NID</label>
+                <input type="text" id="nid" className="form-control form-control-lg"
                     placeholder="Enter Your NID" value={nid} onChange={e => setNid(e.target.value)} />
             </div>
             {/* <!-- User Role input --> */}
             <div className="form-outline mb-3">
-                <label className="form-label" htmlFor="form3Example6">User Role</label>
-                <select className="form-select" value={role} onChange={e => setRole(e.target.value)}>
+                <label className="form-label" htmlFor="role">User Role</label>
+                <select className="form-select" id="role" value={role} onChange={e => setRole(e.target.value)}>
                     <option value="">Select</option>
                     <option value="Customer">Customer</option>
                     <option value="Agent">Agent</option>

@@ -121,7 +121,7 @@ const Withdraw = () => {
                         </div>
                         <div className="col-3">
                             <div className="form-outline mb-3">
-                                <input type="text" className="form-control"
+                                <input type="text" id="toAccount" className="form-control"
                                     placeholder="Enter Your Account Number" value={toAccount || ''} 
                                     onChange={e => settoAccount(e.target.value)} required/>
                             </div>
@@ -133,7 +133,7 @@ const Withdraw = () => {
                         </div>
                         <div className="col-3">
                             <div className="form-outline mb-3">
-                                <input type="number" className="form-control"
+                                <input type="number" className="form-control" id="amount"
                                     placeholder="Enter Number of Amount" value={amount || ''} 
                                     onChange={e => setAmount(e.target.value)} required/>
                             </div>

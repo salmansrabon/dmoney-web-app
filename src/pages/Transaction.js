@@ -136,7 +136,7 @@ const Transaction = () => {
             </div> */}
           </div>
           <div className='col'>
-            <input type="text" className="form-control" placeholder="Search list" value={searchText} onChange={e => setSearchText(e.target.value)} />
+            <input type="text" className="form-control" placeholder="Search list" id="searchText" value={searchText} onChange={e => setSearchText(e.target.value)} />
           </div>
         </div>
         <div className="d-flex text-muted">
