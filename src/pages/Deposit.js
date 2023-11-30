@@ -25,7 +25,6 @@ const Deposit = () => {
 
             await action.get(`/transaction/balance/${fromAccount}`, config)
                 .then((response) => {
-                    //console.log(response.data);
                     setBalance(response?.data?.balance);
                 })
                 .catch((error) => {
