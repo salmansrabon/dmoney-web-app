@@ -15,7 +15,7 @@ const LoginPage = () => {
 
         try {
             const response = await action.post('/user/login', {
-                email: email,
+                emailOrPhoneNumber: email,
                 password: password
             }, {
                 headers: {
@@ -78,7 +78,7 @@ const LoginPage = () => {
             </div>
             {/* <!-- Email input --> */}
             <div className="form-outline mb-4">
-                <label className="form-label" htmlFor="email">Email address</label>
+                <label className="form-label" htmlFor="email">Email or Phone Number</label>
                 <input type="email" id="email" className="form-control form-control-lg"
                     placeholder="Enter a valid email address" name="email"
                     value={email} onChange={(event) => setEmail(event.target.value)}
