@@ -26,7 +26,7 @@ const CreateUser = () => {
         try {
             const response = await action.post(`/user/create`, data, {
                 headers: {
-                    'Authorization': `${localStorage.getItem('token')}`,
+                    'Authorization': `bearer ${localStorage.getItem('token')}`,
                     'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                 }
             });

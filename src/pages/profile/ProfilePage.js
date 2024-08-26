@@ -18,7 +18,7 @@ const ProfilePage = () => {
     useEffect(() => {
         async function fetchData() {
             const headers = {
-                'Authorization': localStorage.getItem('token'),
+                'Authorization': `bearer ${localStorage.getItem('token')}`,
                 'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
             };
 
@@ -73,7 +73,7 @@ const ProfilePage = () => {
 
         const config = {
             headers: {
-                'Authorization': `${localStorage.getItem('token')}`,
+                'Authorization': `bearer ${localStorage.getItem('token')}`,
                 'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
             }
         };

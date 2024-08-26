@@ -15,26 +15,20 @@ const Payment = () => {
     useEffect(() => {
         async function fetchData() {
             const headers = {
-                'Authorization': localStorage.getItem('token'),
+                'Authorization': `bearer ${localStorage.getItem('token')}`,
                 'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
             };
-
-            const config = {
-                headers: headers
-            };
-
-            await config.get(`/transaction/balance/${from_account}`, config)
-                .then((response) => {
-                    //console.log(response.data);
-                    setBalance(response?.data?.balance);
-                })
-                .catch((error) => {
-                    //console.log(error);
-                });
+    
+            try {
+                const response = await action.get(`/transaction/balance/${from_account}`, { headers });
+                setBalance(response?.data?.balance);
+            } catch (error) {
+                console.log(error);
+            }
         }
-
+    
         fetchData();
-    }, [localStorage.getItem('token')]);
+    }, [from_account]); 
 
     const handleSubmit = async event => {
         event.preventDefault();
@@ -73,7 +67,7 @@ const Payment = () => {
                 try {
                     const response = await action.post('/transaction/payment', data, {
                         headers: {
-                            'Authorization': `${localStorage.getItem('token')}`,
+                            'Authorization': `bearer ${localStorage.getItem('token')}`,
                             'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                         }
                     });
