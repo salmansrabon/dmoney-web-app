@@ -15,7 +15,7 @@ const LoginPage = () => {
 
         try {
             const response = await action.post('/user/login', {
-                emailOrPhoneNumber: email,
+                email: email,
                 password: password
             }, {
                 headers: {
@@ -27,7 +27,7 @@ const LoginPage = () => {
             localStorage.setItem('role', response.data.role);
             await action.get(`/user/list`, {
                 headers: {
-                    'Authorization': response?.data?.token,
+                    'Authorization': `bearer ${response?.data?.token}`,
                     'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                 }
             })

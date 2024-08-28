@@ -11,7 +11,7 @@ const SystemBalance = () => {
     useEffect(() => {
         async function fetchData() {
             const headers = {
-                'Authorization': localStorage.getItem('token'),
+                'Authorization': `bearer ${localStorage.getItem('token')}`,
                 'X-Auth-Secret-Key': 'ROADTOSDET'
             };
 

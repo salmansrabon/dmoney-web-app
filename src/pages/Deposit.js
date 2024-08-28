@@ -15,7 +15,7 @@ const Deposit = () => {
     useEffect(() => {
         async function fetchData() {
             const headers = {
-                'Authorization': localStorage.getItem('token'),
+                'Authorization': `bearer ${localStorage.getItem('token')}`,
                 'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
             };
 
@@ -70,7 +70,7 @@ const Deposit = () => {
                 try {
                     const response = await action.post(`/transaction/deposit`, data, {
                         headers: {
-                            'Authorization': `${localStorage.getItem('token')}`,
+                            'Authorization': `bearer ${localStorage.getItem('token')}`,
                             'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                         }
                     });

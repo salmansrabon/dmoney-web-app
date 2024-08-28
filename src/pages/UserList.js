@@ -37,7 +37,7 @@ const UserList = () => {
   useEffect(() => {
     async function fetchData() {
       const headers = {
-        'Authorization': localStorage.getItem('token'),
+        'Authorization': `bearer ${localStorage.getItem('token')}`,
         'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
       };
 
@@ -84,7 +84,7 @@ const UserList = () => {
   const deleteUserData = async (id) => {
     const config = {
       headers: {
-        'Authorization': `${localStorage.getItem('token')}`,
+        'Authorization': `bearer ${localStorage.getItem('token')}`,
         'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
       }
     };
@@ -176,9 +176,9 @@ return <>
     <div className="card">
       <div className="card-body">
         <div className="row mb-2">
-          <div className="col-4">
-            <h5>User List</h5>
-          </div>
+        <div className="col-4">
+        <h5>User List ({users.length})</h5>
+        </div>
           <div className="col">
             <div>
               <div>

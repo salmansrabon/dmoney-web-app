@@ -11,7 +11,7 @@ const AgentStatement = () => {
         try {
             const response = await action.get(`/transaction/statement/${{ customer_phone_number }}`, {
                 headers: {
-                    'Authorization': `${localStorage.getItem('token')}`,
+                    'Authorization': `bearer ${localStorage.getItem('token')}`,
                     'X-Auth-Secret-Key': process.env.REACT_APP_API_KEY
                 }
             });
